@@ -5,9 +5,11 @@ export const getUsers = () => {
 export const setUsers = (users) => {
     localStorage.setItem('users', JSON.stringify(users))
 }
-export const addUser = (user) => {
+export const addUser = ({user,pass,email}) => {
+    const id = Math.random().toString(36).substring(2, 9)
+    const curruser = {id,user,pass,email,publications:[]}
     const users = getUsers()
-    users.push(user)
+    users.push(curruser)
     setUsers(users)
 }
 const removeUser = (user) => {

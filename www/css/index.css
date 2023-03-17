@@ -58,3 +58,7 @@ body {
     width: 233px;
     height: 31px;
 }
+#errors{
+    margin:10px;
+    font-size: 13px;
+}
