@@ -1,5 +1,6 @@
-import { addUser, getUsers } from "./users.js";
-import { newId } from "./utils.js";
+import { setSession } from "./session.js"
+import { addUser, getUsers } from "./users.js"
+import { newId } from "./utils.js"
 
 const validate = (data) => {
     const errors = {}
@@ -37,7 +38,9 @@ const register = (e) => {
         if (user) {
             alert("El usuario ya existe")
         } else {
-            addUser(newId(),data)
+            const id = newId()
+            addUser(id,data)
+            setSession(id)
             alert("Usuario registrado")
             location.href = "feed.html"
         }

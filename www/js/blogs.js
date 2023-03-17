@@ -1,4 +1,4 @@
-import { newId } from "./utils.js";
+import { newId } from "./utils.js"
 export const getBlogs = () => {
     const blogs = localStorage.getItem('blogs')
     return blogs ? JSON.parse(blogs) : []

@@ -1,4 +1,5 @@
 import { newBlog } from "./blogs.js";
+import { getSession } from "./session.js";
 let img
 const validate = () => {
     const errors = {}
@@ -15,7 +16,8 @@ const uploadBlog = (e) => {
         image: img || false
     }
     if(Object.keys(validation).length === 0) {
-        newBlog(data)
+        const owner = getSession()
+        newBlog({...data, owner})
         alert("Blog subido")
         location.href = "feed.html"
     }else{
