@@ -1,4 +1,4 @@
-import { addUser, getUsers } from "./db.js";
+import { addUser, getUsers } from "./users.js";
 
 const validate = (data) => {
     const errors = {}
