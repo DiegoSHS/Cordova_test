@@ -1,0 +1,127 @@
+body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+img{
+    width: 100%;
+}
+
+.feed {
+    width: 100%;
+    height: 92%;
+    overflow-y: scroll;
+}
+
+.feed-items {
+    position: relative;
+    width: 100%;
+    height: 552px;
+}
+
+.feed-item-img {
+    width: 100%;
+    height: 500px;
+}
+
+.profiles {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 9%;
+    background: rgba(217, 217, 217, 0.5);
+}
+
+.profiles-text {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    height: 80%;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.profiles-icon {
+    width: 50px;
+    height: 50px;
+    left: 0;
+    bottom: 10%;
+}
+
+.profiles-img {
+    margin: 5px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
+
+.navv {
+    float: none;
+    width: 100%;
+    height: 8%;
+    bottom: 0;
+}
+
+.navig {
+    width: 100%;
+    height: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    position: absolute;
+    background: #FFFFFF;
+}
+
+.navig-items {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    width: 100%;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.nitem {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 2px;
+    opacity: 0.5;
+    flex: none;
+    order: 0;
+    align-self: stretch;
+    flex-grow: 1;
+}
+
+.nitem-img {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.nitem-text {
+    height: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #000000;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
