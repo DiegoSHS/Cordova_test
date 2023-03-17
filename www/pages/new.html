@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Register</title>
+</head>
+
+<body>
+    <div class="container">
+        <h4 class="tittle container">
+            Nueva publicación
+        </h4>
+        <form class="tittle container">
+            <div class="form-group">
+                <label class="form-label" for="content">Contenido</label>
+                <textarea class="form-control" rows="3" id="content" aria-describedby="emailHelp"
+                    placeholder="Qué estás pensando">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="image">Imagen</label>
+                <input class="form-control" type="file" id="file">
+            </div>
+            <div id="errors"></div>
+        </form>
+        <div class="overflow">
+            <img id="image" class="image-preview">
+        </div>
+        <div class="tittle container">
+            <button id="newblog" class="subbmit">
+                Publicar
+            </button>
+        </div>
+    </div>
+</body>
+<script type="module" src="/www/js/new.js"></script>
+
+</html>
