@@ -1,4 +1,3 @@
-import { newId } from "./utils.js";
 export const getUsers = () => {
     const users = localStorage.getItem('users')
     return users ? JSON.parse(users) : []
@@ -6,9 +5,8 @@ export const getUsers = () => {
 export const setUsers = (users) => {
     localStorage.setItem('users', JSON.stringify(users))
 }
-export const addUser = ({user,pass,email}) => {
-    const id = newId()
-    const curruser = {id,user,pass,email,publications:[]}
+export const addUser = (id,{user,pass,email}) => {
+    const curruser = {id,user,pass,email}
     const users = getUsers()
     users.push(curruser)
     setUsers(users)

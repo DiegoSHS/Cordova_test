@@ -6,9 +6,9 @@ export const getBlogs = () => {
 export const setBlogs = (blogs) => {
     localStorage.setItem('blogs', JSON.stringify(blogs))
 }
-export const newBlog = ({content,image}) => {
+export const newBlog = ({ content, image, owner }) => {
     const id = newId()
-    const currblog = {id,content,image}
+    const currblog = { id, owner, content, image }
     const blogs = getBlogs()
     blogs.push(currblog)
     setBlogs(blogs)
