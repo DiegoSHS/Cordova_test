@@ -1,4 +1,5 @@
-import { setSession } from "./session"
+import { setSession } from "./session.js"
+import { getUsers } from "./users.js"
 
 const validate = (data) => {
     const errors = {}
@@ -23,7 +24,7 @@ const login = () => {
         if (user) {
             setSession(user.id)
             alert("Bienvenido")
-            location.href = "feed.html"
+            location.href = "pages/feed.html"
         }else{
             alert("Usuario o contraseña incorrectos")
         }

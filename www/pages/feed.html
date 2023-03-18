@@ -9,6 +9,7 @@
     <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="../css/feed.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <title>Login</title>
 </head>
 
@@ -17,16 +18,15 @@
         <div id="blogs" class="feed">
         </div>
     </div>
-    <img id="newblog" class="newblog" src="/www/img/add.png"/>
     <div class="navv">
         <div class="navig">
             <div class="navig-items">
-                <div id="personal" class="nitem">
+                <div id="newblog" class="nitem">
                     <div class="nitem-img">
-                        <img src="../img/feed/user.png" alt="">
+                        <img src="/www/img/add.png" />
                     </div>
                     <div class="nitem-text">
-                        Yo
+                        Publicar
                     </div>
                 </div>
                 <div id="image" class="nitem">
@@ -53,10 +53,36 @@
                         Inicio
                     </div>
                 </div>
+                <div class="nitem">
+                    <div class="nav-item dropdown">
+                        <a class="" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                            aria-expanded="false">
+                            <img class="nitem-img" src="/www/img/feed/menu.png" />
+                        </a>
+                        <div class="dropdown-menu itemss">
+                            <div class="itemss">
+                                <div id="personal" class="drop-item">
+                                    <img class="nitem-img" src="../img/feed/user.png" alt="">
+                                    <div class="">
+                                        Yo
+                                    </div>
+                                </div>
+                                <div id="logout" class="drop-item">
+                                    <img class="nitem-img" src="../img/feed/logout.png" alt="">
+                                    <div>
+                                        Salir
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 <script type="module" src="../js/indexeddb/indexdb.js"></script>
 <script type="module" src="../js/feed.js"></script>
+
 </html>

@@ -1,6 +1,6 @@
 import { deleteBlog } from "./blogs.js"
 import { getBlogs } from "./indexeddb/indexdb.js"
-import { getSession } from "./session.js"
+import { deleteSession, getSession } from "./session.js"
 import { getUser, getUsers } from "./users.js"
 
 const generateBlog = ({ content, image, owner, id }, personal = false) => {
@@ -104,3 +104,7 @@ document.getElementById("personal").addEventListener("click", personalBlogs, fal
 document.getElementById("all").addEventListener("click", allBlogs, false)
 document.getElementById("text").addEventListener("click", textBlogs, false)
 document.getElementById("image").addEventListener("click", imageBlogs, false)
+document.getElementById("logout").addEventListener("click", () => {
+    deleteSession()
+    location.href = "../index.html"
+}, false)

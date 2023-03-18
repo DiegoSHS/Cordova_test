@@ -16,10 +16,10 @@ const uploadBlog = async(e) => {
     }
     if(Object.keys(validation).length === 0) {
         const owner = getSession()
-        await addBlog({...data, owner})
+        const confirm = await addBlog({...data, owner})
         //createBlog({...data, owner})
         alert("Blog subido")
-        location.href = "feed.html"
+        confirm ? location.href = "feed.html" : alert("Error al subir el blog")
     }else{
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")
         document.getElementById("errors").className = "alert alert-danger alert-dismissible fade show"
