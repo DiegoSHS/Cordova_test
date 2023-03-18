@@ -17,7 +17,8 @@ const uploadBlog = (e) => {
     }
     if(Object.keys(validation).length === 0) {
         const owner = getSession()
-        newBlog({...data, owner})
+        //newBlog({...data, owner})
+        createBlog({...data, owner})
         alert("Blog subido")
         location.href = "feed.html"
     }else{
