@@ -2,7 +2,7 @@ import { deleteBlog, getBlogs } from "./blogs.js"
 import { getSession } from "./session.js"
 import { getUser, getUsers } from "./users.js"
 
-const generateBlog = ({content, image, owner, id},personal = false) => {
+const generateBlog = ({ content, image, owner, id }, personal = false) => {
     return (
         `
             <div class=${image ? "blog" : "text-blog"}>
@@ -41,7 +41,7 @@ const personalBlogs = () => {
             image: image,
             owner: currentUser?.user,
             id: id
-        },true)
+        }, true)
     }).reverse().join('')
     document.getElementById("blogs").innerHTML = blogshtml
     document.querySelectorAll(".deleteblog").forEach((e) => {
@@ -64,9 +64,42 @@ const allBlogs = () => {
     }).reverse().join('')
     document.getElementById("blogs").innerHTML = blogshtml
 }
+
+const textBlogs = () => {
+    const blogs = getBlogs()
+    const users = getUsers()
+    const textBlogs = blogs.filter(b => b.image === false)
+    const blogshtml = textBlogs.map(({ content, image, owner, }) => {
+        const userOwner = users.find(u => u.id === owner)
+        return generateBlog({
+            content: content,
+            image: image,
+            owner: userOwner?.user
+        })
+    }).reverse().join('')
+    document.getElementById("blogs").innerHTML = blogshtml
+}
+
+const imageBlogs = () => {
+    const blogs = getBlogs()
+    const users = getUsers()
+    const imageBlogs = blogs.filter(b => b.image !== false)
+    const blogshtml = imageBlogs.map(({ content, image, owner, }) => {
+        const userOwner = users.find(u => u.id === owner)
+        return generateBlog({
+            content: content,
+            image: image,
+            owner: userOwner?.user
+        })
+    }).reverse().join('')
+    document.getElementById("blogs").innerHTML = blogshtml
+}
 //document.onload(showBlogs(), false)
 document.addEventListener("DOMContentLoaded", allBlogs, false)
 document.getElementById("newblog").addEventListener("click", () => {
     location.href = "new.html"
 }, false)
 document.getElementById("personal").addEventListener("click", personalBlogs, false)
+document.getElementById("all").addEventListener("click", allBlogs, false)
+document.getElementById("text").addEventListener("click", textBlogs, false)
+document.getElementById("image").addEventListener("click", imageBlogs, false)
