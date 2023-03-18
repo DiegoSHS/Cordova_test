@@ -1,5 +1,3 @@
-import { initdb } from "./indexdb.js"
-
 export const getBlogs = () => {
     const req = initdb()
     req.onsuccess = (e) => {
@@ -7,8 +5,9 @@ export const getBlogs = () => {
         const transaction = database.transaction('blogs', 'readwrite')
         const blogs = transaction.objectStore('blogs')
         const allblogss = blogs.getAll()
-        const bblogs = allblogss.result
-        console.log(bblogs)
+        allblogss.onsuccess = (e) => {
+            const bblogs = allblogss.result
+        }
     }
 }
 export const createBlog = (blog) => {
@@ -39,6 +38,9 @@ export const blogsbyowner = (owner) => {
         const blogs = transaction.objectStore('blogs')
         const ownerIndex = blogs.index('owner')
         const blogss = ownerIndex.getAll(owner)
-        const currentBlogs = blogss.result
+        blogss.onsuccess = (e) => {
+            const currentBlogs = blogss.result
+            console.log(currentBlogs)
+        }
     }
 }

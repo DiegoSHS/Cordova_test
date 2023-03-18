@@ -1,4 +1,5 @@
-import { deleteBlog, getBlogs } from "./blogs.js"
+import { deleteBlog } from "./blogs.js"
+import { getBlogs } from "./indexeddb/indexdb.js"
 import { getSession } from "./session.js"
 import { getUser, getUsers } from "./users.js"
 
@@ -30,8 +31,8 @@ const quitBlog = (id) => {
     personalBlogs()
 }
 
-const personalBlogs = () => {
-    const blogs = getBlogs()
+const personalBlogs = async () => {
+    const blogs = await getBlogs()
     const session = getSession()
     const currentUser = getUser(session)
     const userBlogs = blogs.filter(b => b.owner === session)
@@ -51,8 +52,8 @@ const personalBlogs = () => {
     })
 }
 
-const allBlogs = () => {
-    const blogs = getBlogs()
+const allBlogs = async () => {
+    const blogs = await getBlogs()
     const users = getUsers()
     const blogshtml = blogs.map(({ content, image, owner, }) => {
         const userOwner = users.find(u => u.id === owner)
@@ -65,8 +66,8 @@ const allBlogs = () => {
     document.getElementById("blogs").innerHTML = blogshtml
 }
 
-const textBlogs = () => {
-    const blogs = getBlogs()
+const textBlogs = async () => {
+    const blogs = await getBlogs()
     const users = getUsers()
     const textBlogs = blogs.filter(b => b.image === false)
     const blogshtml = textBlogs.map(({ content, image, owner, }) => {
@@ -80,8 +81,8 @@ const textBlogs = () => {
     document.getElementById("blogs").innerHTML = blogshtml
 }
 
-const imageBlogs = () => {
-    const blogs = getBlogs()
+const imageBlogs = async () => {
+    const blogs = await getBlogs()
     const users = getUsers()
     const imageBlogs = blogs.filter(b => b.image !== false)
     const blogshtml = imageBlogs.map(({ content, image, owner, }) => {
@@ -94,7 +95,7 @@ const imageBlogs = () => {
     }).reverse().join('')
     document.getElementById("blogs").innerHTML = blogshtml
 }
-
+//document.onload(showBlogs(), false)
 document.addEventListener("DOMContentLoaded", allBlogs, false)
 document.getElementById("newblog").addEventListener("click", () => {
     location.href = "new.html"

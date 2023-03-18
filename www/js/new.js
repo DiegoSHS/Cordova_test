@@ -1,4 +1,4 @@
-import { newBlog } from "./blogs.js";
+import { addBlog } from "./indexeddb/indexdb.js";
 import { getSession } from "./session.js";
 let img
 const validate = () => {
@@ -8,8 +8,7 @@ const validate = () => {
     }
     return errors
 }
-const uploadBlog = (e) => {
-    e.preventDefault()
+const uploadBlog = async(e) => {
     const validation = validate()
     const data = {
         content: document.getElementById("content").value,
@@ -17,8 +16,8 @@ const uploadBlog = (e) => {
     }
     if(Object.keys(validation).length === 0) {
         const owner = getSession()
-        //newBlog({...data, owner})
-        createBlog({...data, owner})
+        await addBlog({...data, owner})
+        //createBlog({...data, owner})
         alert("Blog subido")
         location.href = "feed.html"
     }else{
