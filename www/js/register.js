@@ -42,7 +42,7 @@ const register = (e) => {
             addUser(id,data)
             setSession(id)
             alert("Usuario registrado")
-            location.href = "feed.html"
+            location.href = "sfeed.html"
         }
     } else {
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")

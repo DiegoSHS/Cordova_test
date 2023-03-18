@@ -34,7 +34,6 @@ const readFile = (ev) => {
     reader.onload = (e) => {
         const uploaded_image = e.target.result
         img = uploaded_image
-        console.log(img)
         document.getElementById("image").src = uploaded_image
     }
 }
