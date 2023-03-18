@@ -2,44 +2,65 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #FFFFFF;
 }
-
 img{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-.feed {
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
     width: 100%;
-    height: 92%;
-    overflow-y: scroll;
+}
+.feed {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .feed-items {
+    border-radius: 15px;
+    background-color: #cfcfcf;
     position: relative;
     width: 100%;
-    height: 552px;
+    height: 500px;
+    margin: 5px;
 }
 
 .feed-item-img {
-    width: 100%;
-    height: 500px;
+    border-radius: 15px;
+    height: 400px;
+    padding: 5px;
 }
-
+.blog-content{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .profiles {
+    margin: 10px;
+    border-radius: 5px;
     position: absolute;
     display: flex;
     align-items: center;
-    width: 100%;
-    height: 9%;
     background: rgba(217, 217, 217, 0.5);
 }
-
+.icon-heart{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .profiles-text {
     display: flex;
     align-items: center;
     margin: 5px;
-    height: 80%;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
@@ -47,13 +68,13 @@ img{
 }
 
 .profiles-icon {
-    width: 50px;
-    height: 50px;
-    left: 0;
-    bottom: 10%;
+    width: 30px;
+    height: 30px;
 }
 
 .profiles-img {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 5px;
     width: 40px;
     height: 40px;
@@ -61,6 +82,11 @@ img{
 }
 
 .navv {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
     float: none;
     width: 100%;
     height: 8%;
@@ -69,10 +95,7 @@ img{
 
 .navig {
     width: 100%;
-    height: 8%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     padding: 0px;
     position: absolute;
     background: #FFFFFF;
