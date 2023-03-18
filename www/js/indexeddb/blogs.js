@@ -1,27 +1,44 @@
-import { transaction } from "./indexdb"
+import { initdb } from "./indexdb.js"
 
 export const getBlogs = () => {
-    const blogs = transaction('blogs', 'readwrite')
-    const allblogs = blogs.getAll()
-    allblogs.onsuccess = (e) => {
-        const bblogs = allblogs.result
-        return bblogs
+    const req = initdb()
+    req.onsuccess = (e) => {
+        const database = req.result
+        const transaction = database.transaction('blogs', 'readwrite')
+        const blogs = transaction.objectStore('blogs')
+        const allblogss = blogs.getAll()
+        const bblogs = allblogss.result
+        console.log(bblogs)
     }
 }
 export const createBlog = (blog) => {
-    const blogs = transaction('blogs', 'readwrite')
-    blogs.put(blog)
-}
-export const deleteBlog = (id) => {
-    const blogs = transaction('blogs', 'readwrite')
-    blogs.delete(id)
-}
-export const blogsbyowner = (owner) => {
-    const blogs = transaction('blogs', 'readwrite')
-    const ownerIndex = blogs.index('owner')
-    const req = ownerIndex.get(owner)
+    const req = initdb()
     req.onsuccess = (e) => {
-        const currentBlogs = req.result
-        return currentBlogs
+        const database = req.result
+        const transaction = database.transaction('blogs', 'readwrite')
+        const blogs = transaction.objectStore('blogs')
+        blogs.add(blog)
+    }
+}
+
+export const deleteBlog = (id) => {
+    const req = initdb()
+    req.onsuccess = (e) => {
+        const database = req.result
+        const transaction = database.transaction('blogs', 'readwrite')
+        const blogs = transaction.objectStore('blogs')
+        blogs.delete(id)
+    }
+}
+
+export const blogsbyowner = (owner) => {
+    const req = initdb()
+    req.onsuccess = (e) => {
+        const database = req.result
+        const transaction = database.transaction('blogs', 'readwrite')
+        const blogs = transaction.objectStore('blogs')
+        const ownerIndex = blogs.index('owner')
+        const blogss = ownerIndex.getAll(owner)
+        const currentBlogs = blogss.result
     }
 }

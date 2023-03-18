@@ -1,7 +1,7 @@
 export const initdb = () => {
     const database = window.indexedDB
     const req = database.open('insta_cordo', 1)
-
+    
     req.onerror = (e) => {
         console.log('Error opening database')
     }
@@ -18,26 +18,7 @@ export const initdb = () => {
         console.log('Databases created')
     }
     req.onsuccess = (e) => {
-        const db = req.result
-        const transaction = db.transaction('users', 'readwrite')
-        const users = transaction.objectStore('users')
-        const userIndex = users.index('user')
-        users.put({user:"juan", pass:"123", email:"juan@panela"})
+        console.log('Database opened')
     }
-    return {
-        req,
-        database,
-    }
+    return req
 }
-
-export const transaction = (store, mode) => {
-    const {req,database} = initdb()
-    req.onsuccess((e) => {
-        const db = req.result
-        const transaction = db.transaction(store, mode)
-        const objectStore = transaction.objectStore(store)
-        return objectStore
-    })
-}
-
-initdb()

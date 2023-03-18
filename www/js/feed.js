@@ -94,7 +94,7 @@ const imageBlogs = () => {
     }).reverse().join('')
     document.getElementById("blogs").innerHTML = blogshtml
 }
-//document.onload(showBlogs(), false)
+
 document.addEventListener("DOMContentLoaded", allBlogs, false)
 document.getElementById("newblog").addEventListener("click", () => {
     location.href = "new.html"
