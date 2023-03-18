@@ -8,30 +8,45 @@ img{
     height: 100%;
     object-fit: cover;
 }
+.divisor {
+    position: relative;
+    width: 251px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .container{
     display: flex;
     align-items: center;
     flex-direction: column;
     height: 100%;
-    width: 100%;
 }
 .feed {
     display: flex;
     align-items: center;
     flex-direction: column;
     width: 100%;
+    height: 100%;
+    margin-bottom: 200px;
+    padding-bottom: 200px;
 }
 
-.feed-items {
+.blog {
     border-radius: 15px;
     background-color: #cfcfcf;
     position: relative;
     width: 100%;
-    height: 500px;
     margin: 5px;
 }
-
-.feed-item-img {
+.text-blog{
+    border-radius: 15px;
+    background-color: #cfcfcf;
+    position: relative;
+    width: 100%;
+    margin: 5px;
+}
+.blog-image {
     border-radius: 15px;
     height: 400px;
     padding: 5px;
@@ -42,13 +57,12 @@ img{
     flex-direction: column;
     justify-content: center;
 }
-.profiles {
+.profile-info {
     margin: 10px;
-    border-radius: 5px;
-    position: absolute;
+    border-radius: 100px;
     display: flex;
     align-items: center;
-    background: rgba(217, 217, 217, 0.5);
+    background: rgba(172, 172, 172, 0.5);
 }
 .icon-heart{
     display: flex;
@@ -57,7 +71,7 @@ img{
     margin-left: 10px;
     margin-right: 10px;
 }
-.profiles-text {
+.profile-name {
     display: flex;
     align-items: center;
     margin: 5px;
@@ -67,12 +81,12 @@ img{
     color: #000000;
 }
 
-.profiles-icon {
+.img-icon-heart {
     width: 30px;
     height: 30px;
 }
 
-.profiles-img {
+.profile-img {
     border: 1px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 5px;
@@ -80,13 +94,26 @@ img{
     height: 40px;
     border-radius: 100px;
 }
-
+.newblog {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    background-color: rgba(172, 172, 172, 0.5);
+    padding: 10px;
+    float: none;
+    height: 40px;
+    width: 40px;
+    bottom: 10vh;
+    right: 20px;
+}
 .navv {
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #FFFFFF;
+    background-color: rgba(172, 172, 172, 0.5);
     float: none;
     width: 100%;
     height: 8%;
@@ -98,7 +125,6 @@ img{
     display: flex;
     padding: 0px;
     position: absolute;
-    background: #FFFFFF;
 }
 
 .navig-items {
@@ -137,7 +163,6 @@ img{
 
 .nitem-text {
     height: 15px;
-    font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
     font-size: 12px;

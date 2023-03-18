@@ -8,8 +8,13 @@ export const setBlogs = (blogs) => {
 }
 export const newBlog = ({ content, image, owner }) => {
     const id = newId()
-    const currblog = { id, owner, content, image }
+    const currBlog = { id, owner, content, image }
     const blogs = getBlogs()
-    blogs.push(currblog)
+    blogs.push(currBlog)
     setBlogs(blogs)
+}
+export const deleteBlog = (id) => {
+    const blogs = getBlogs()
+    const newBlogs = blogs.filter(b => b.id !== id)
+    setBlogs(newBlogs)
 }

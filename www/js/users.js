@@ -11,14 +11,14 @@ export const addUser = (id,{user,pass,email}) => {
     users.push(curruser)
     setUsers(users)
 }
+export const getUser = (id) => {
+    const users = getUsers()
+    return users.find(u => u.id === id)
+}
 const removeUser = (user) => {
     const users = getUsers()
     const newUsers = users.filter(u => u.user !== user)
     setUsers(newUsers)
-}
-const getUser = (user) => {
-    const users = getUsers()
-    return users.find(u => u.user === user)
 }
 const updateUser = (user, newUser) => {
     const users = getUsers()
