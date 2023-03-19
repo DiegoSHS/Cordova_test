@@ -26,25 +26,55 @@ const generateBlog = ({ content, image, owner, id }, personal = false) => {
     )
 }
 
+const viewProfile = ({user,email}) => {
+    return (
+        `
+            <div class="">
+                <div class="profile">
+                    <div class="profile">
+                        <img class="profile-img" src="../img/user.png" alt="">
+                        <div class="profile-name">
+                            ${user}
+                        </div>
+                    </div>
+                    <div class="profile-email">
+                        ${email}
+                    </div>
+                </div>
+            </div>
+        `
+    )
+}
+
 const quitBlog = (id) => {
     deleteBlog(id)
     personalBlogs()
 }
+
+const validateBlogs = (blogs) => blogs.length !== 0 && blogs instanceof Array && blogs !== undefined
 
 const personalBlogs = async () => {
     const blogs = await getBlogs()
     const session = getSession()
     const currentUser = getUser(session)
     const userBlogs = blogs.filter(b => b.owner === session)
-    const blogshtml = userBlogs.map(({ content, image, id }) => {
-        return generateBlog({
-            content: content,
-            image: image,
-            owner: currentUser?.user,
-            id: id
-        }, true)
-    }).reverse().join('')
-    document.getElementById("blogs").innerHTML = blogshtml
+    const validate = validateBlogs(userBlogs)
+    const blogshtml = validate ?
+        (
+            userBlogs.map(({ content, image, id }) => {
+                return generateBlog({
+                    content: content,
+                    image: image,
+                    owner: currentUser?.user,
+                    id: id
+                }, true)
+            }).reverse().join('')
+        ) :
+        (
+           '<div class="no-blogs">No tienes blogs</div>' 
+        )
+    const render = viewProfile(currentUser) + blogshtml
+    document.getElementById("blogs").innerHTML = render
     document.querySelectorAll(".deleteblog").forEach((e) => {
         e.addEventListener("click", (e) => {
             quitBlog(e.target.id)
@@ -55,14 +85,21 @@ const personalBlogs = async () => {
 const allBlogs = async () => {
     const blogs = await getBlogs()
     const users = getUsers()
-    const blogshtml = blogs.map(({ content, image, owner, }) => {
-        const userOwner = users.find(u => u.id === owner)
-        return generateBlog({
-            content: content,
-            image: image,
-            owner: userOwner?.user
-        })
-    }).reverse().join('')
+    const validate = validateBlogs(blogs)
+    const blogshtml = validate ?
+        (
+            blogs.map(({ content, image, owner, }) => {
+                const userOwner = users.find(u => u.id === owner)
+                return generateBlog({
+                    content: content,
+                    image: image,
+                    owner: userOwner?.user
+                })
+            }).reverse().join('')
+        ) :
+        (
+            '<div class="no-blogs">No hay blogs</div>'
+        )
     document.getElementById("blogs").innerHTML = blogshtml
 }
 
@@ -70,14 +107,21 @@ const textBlogs = async () => {
     const blogs = await getBlogs()
     const users = getUsers()
     const textBlogs = blogs.filter(b => b.image === false)
-    const blogshtml = textBlogs.map(({ content, image, owner, }) => {
-        const userOwner = users.find(u => u.id === owner)
-        return generateBlog({
-            content: content,
-            image: image,
-            owner: userOwner?.user
-        })
-    }).reverse().join('')
+    const validate = validateBlogs(textBlogs)
+    const blogshtml = validate ?
+        (
+            textBlogs.map(({ content, image, owner, }) => {
+                const userOwner = users.find(u => u.id === owner)
+                return generateBlog({
+                    content: content,
+                    image: image,
+                    owner: userOwner?.user
+                })
+            }).reverse().join('')
+        ) :
+        (
+            '<div class="no-blogs">No hay blogs de este tipo</div>'
+        )
     document.getElementById("blogs").innerHTML = blogshtml
 }
 
@@ -85,14 +129,21 @@ const imageBlogs = async () => {
     const blogs = await getBlogs()
     const users = getUsers()
     const imageBlogs = blogs.filter(b => b.image !== false)
-    const blogshtml = imageBlogs.map(({ content, image, owner, }) => {
-        const userOwner = users.find(u => u.id === owner)
-        return generateBlog({
-            content: content,
-            image: image,
-            owner: userOwner?.user
-        })
-    }).reverse().join('')
+    const validate = validateBlogs(imageBlogs)
+    const blogshtml = validate ?
+        (
+            imageBlogs.map(({ content, image, owner, }) => {
+                const userOwner = users.find(u => u.id === owner)
+                return generateBlog({
+                    content: content,
+                    image: image,
+                    owner: userOwner?.user
+                })
+            }).reverse().join('')
+        ) : 
+        (
+            '<div class="no-blogs">No hay blogs de este tipo</div>'
+        )
     document.getElementById("blogs").innerHTML = blogshtml
 }
 //document.onload(showBlogs(), false)

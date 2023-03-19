@@ -63,13 +63,7 @@ img {
     justify-content: center;
 }
 
-.profile-info {
-    margin: 10px;
-    border-radius: 100px;
-    display: flex;
-    align-items: center;
-    background: rgba(172, 172, 172, 0.5);
-}
+
 
 .icon-heart {
     display: flex;
@@ -78,7 +72,31 @@ img {
     margin-left: 10px;
     margin-right: 10px;
 }
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 100px;
+    background: rgba(172, 172, 172, 0.5);
+}
 
+.profile-info {
+    margin: 10px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    background: rgba(172, 172, 172, 0.5);
+}
+.profile-email{
+    display: flex;
+    align-items: center;
+    margin: 5px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000000;
+}
 .profile-name {
     display: flex;
     align-items: center;
@@ -89,11 +107,6 @@ img {
     color: #000000;
 }
 
-.img-icon-heart {
-    width: 30px;
-    height: 30px;
-}
-
 .profile-img {
     border: 1px solid rgba(0, 0, 0, 0.25);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -101,6 +114,11 @@ img {
     width: 40px;
     height: 40px;
     border-radius: 100px;
+}
+
+.img-icon-heart {
+    width: 30px;
+    height: 30px;
 }
 
 .itemss {

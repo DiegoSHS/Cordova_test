@@ -1,10 +1,8 @@
 import { getSession } from "./session.js"
 
-const validSession = () => {
-  const session = getSession()
-  return session ? true : false
+const relocate = () => {
+  if (!getSession()) {
+    location.href = "../index.html"
+  }
 }
-const sesion = validSession()
-if (sesion) {
-  location.href = "../index.html"
-}
+relocate()
