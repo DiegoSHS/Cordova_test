@@ -37,8 +37,19 @@ const readFile = (ev) => {
         document.getElementById("image").src = uploaded_image
     }
 }
+
+const addListeners = () => {
+    document.getElementById("all").addEventListener("click", ()=>{
+        location.href = "feed.html"
+    }, false)
+    document.getElementById("logout").addEventListener("click", () => {
+        deleteSession()
+        location.href = "../index.html"
+    }, false)
+}
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('navbar').innerHTML = generateNav()
+    addListeners()
 })
 document.querySelector("#file").addEventListener("change", readFile, false)
 document.getElementById("newblog").addEventListener("click", uploadBlog, false)
