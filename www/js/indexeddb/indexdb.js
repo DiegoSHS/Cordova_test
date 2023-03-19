@@ -1,4 +1,5 @@
-import { openDB, deleteDB, wrap, unwrap } from 'https://cdn.jsdelivr.net/npm/idb@7/+esm';
+import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@7/+esm'
+//import { openDB} from 'idb'
 const initdb = async() => {
     const db = await openDB('users', 1, {
         upgrade(db, oldVersion, newVersion, transaction, event) {
@@ -43,10 +44,10 @@ export const addBlog = async(blog) => {
     return value
 }
 
-const deleteBlog = async(id) => {
+export const deleteBlog = async(id) => {
     const db = await initdb()
     const tx = db.transaction('blogs', 'readwrite')
     const store = tx.objectStore('blogs')
-    const value = await store.delete(id)
+    const value = await store.delete(Number(id))
     return value
 }

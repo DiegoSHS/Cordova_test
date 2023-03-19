@@ -75,14 +75,21 @@ img {
 .profile {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     border-radius: 100px;
     background: rgba(172, 172, 172, 0.5);
 }
-
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .profile-info {
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin: 10px;
     border-radius: 100px;
     display: flex;
@@ -92,7 +99,8 @@ img {
 .profile-email{
     display: flex;
     align-items: center;
-    margin: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
     font-size: 14px;
     line-height: 22px;
     color: #000000;
@@ -119,84 +127,4 @@ img {
 .img-icon-heart {
     width: 30px;
     height: 30px;
-}
-
-.itemss {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.drop-item {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    margin: 5px;
-}
-.navv {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    float: none;
-    width: 100%;
-    backdrop-filter: blur(5px);
-    background-color: rgba(172, 172, 172, 0.5);
-    height: 8%;
-    bottom: 0;
-}
-
-.navig {
-    width: 100%;
-    display: flex;
-    padding: 0px;
-    position: absolute;
-}
-
-.navig-items {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 0px;
-    width: 100%;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 1;
-}
-
-.nitem {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0px;
-    gap: 2px;
-    opacity: 0.5;
-    flex: none;
-    order: 0;
-    align-self: stretch;
-    flex-grow: 1;
-}
-
-.nitem-img {
-    width: 24px;
-    height: 24px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.nitem-text {
-    height: 15px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 15px;
-    text-align: center;
-    color: #000000;
-    flex: none;
-    order: 1;
-    flex-grow: 0;
 }

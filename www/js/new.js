@@ -1,3 +1,4 @@
+import { generateNav } from "./components/navbar.js";
 import { addBlog } from "./indexeddb/indexdb.js";
 import { getSession } from "./session.js";
 let img
@@ -18,8 +19,7 @@ const uploadBlog = async(e) => {
         const owner = getSession()
         const confirm = await addBlog({...data, owner})
         //createBlog({...data, owner})
-        alert("Blog subido")
-        confirm ? location.href = "feed.html" : alert("Error al subir el blog")
+        confirm ? (alert("Blog subido")) : (alert("Error al subir el blog"))
     }else{
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")
         document.getElementById("errors").className = "alert alert-danger alert-dismissible fade show"
@@ -37,5 +37,8 @@ const readFile = (ev) => {
         document.getElementById("image").src = uploaded_image
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById('navbar').innerHTML = generateNav()
+})
 document.querySelector("#file").addEventListener("change", readFile, false)
 document.getElementById("newblog").addEventListener("click", uploadBlog, false)

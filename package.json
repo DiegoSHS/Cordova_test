@@ -22,5 +22,8 @@
       "android",
       "browser"
     ]
+  },
+  "dependencies": {
+    "idb": "^7.1.1"
   }
 }

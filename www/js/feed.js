@@ -1,5 +1,5 @@
-import { deleteBlog } from "./blogs.js"
-import { getBlogs } from "./indexeddb/indexdb.js"
+import { generateNav } from "./components/navbar.js"
+import { deleteBlog, getBlogs } from "./indexeddb/indexdb.js"
 import { deleteSession, getSession } from "./session.js"
 import { getUser, getUsers } from "./users.js"
 
@@ -26,29 +26,29 @@ const generateBlog = ({ content, image, owner, id }, personal = false) => {
     )
 }
 
-const viewProfile = ({user,email}) => {
+const viewProfile = ({ user, email }) => {
     return (
         `
-            <div class="">
-                <div class="profile">
+            <div class="profile-container">
+                <div class="profile-info">
                     <div class="profile">
                         <img class="profile-img" src="../img/user.png" alt="">
                         <div class="profile-name">
                             ${user}
                         </div>
                     </div>
-                    <div class="profile-email">
-                        ${email}
-                    </div>
                 </div>
+                <div class="profile-email profile-info profile">
+                ${email}
+            </div>
             </div>
         `
     )
 }
 
-const quitBlog = (id) => {
-    deleteBlog(id)
-    personalBlogs()
+const quitBlog = async (id) => {
+    await deleteBlog(id)
+    await personalBlogs()
 }
 
 const validateBlogs = (blogs) => blogs.length !== 0 && blogs instanceof Array && blogs !== undefined
@@ -71,13 +71,14 @@ const personalBlogs = async () => {
             }).reverse().join('')
         ) :
         (
-           '<div class="no-blogs">No tienes blogs</div>' 
+            '<div class="no-blogs">No tienes blogs</div>'
         )
     const render = viewProfile(currentUser) + blogshtml
     document.getElementById("blogs").innerHTML = render
     document.querySelectorAll(".deleteblog").forEach((e) => {
-        e.addEventListener("click", (e) => {
-            quitBlog(e.target.id)
+        e.addEventListener("click", async (e) => {
+            e.preventDefault()
+            await quitBlog(e.target.id)
         }, false)
     })
 }
@@ -140,22 +141,29 @@ const imageBlogs = async () => {
                     owner: userOwner?.user
                 })
             }).reverse().join('')
-        ) : 
+        ) :
         (
             '<div class="no-blogs">No hay blogs de este tipo</div>'
         )
     document.getElementById("blogs").innerHTML = blogshtml
 }
-//document.onload(showBlogs(), false)
-document.addEventListener("DOMContentLoaded", allBlogs, false)
-document.getElementById("newblog").addEventListener("click", () => {
-    location.href = "new.html"
-}, false)
-document.getElementById("personal").addEventListener("click", personalBlogs, false)
-document.getElementById("all").addEventListener("click", allBlogs, false)
-document.getElementById("text").addEventListener("click", textBlogs, false)
-document.getElementById("image").addEventListener("click", imageBlogs, false)
-document.getElementById("logout").addEventListener("click", () => {
-    deleteSession()
-    location.href = "../index.html"
+
+const addListeners = () => {
+    document.getElementById("personal").addEventListener("click", personalBlogs, false)
+    document.getElementById("all").addEventListener("click", allBlogs, false)
+    document.getElementById("text").addEventListener("click", textBlogs, false)
+    document.getElementById("image").addEventListener("click", imageBlogs, false)
+    document.getElementById("newblog").addEventListener("click", () => {
+        location.href = "new.html"
+    }, false)
+    document.getElementById("logout").addEventListener("click", () => {
+        deleteSession()
+        location.href = "../index.html"
+    }, false)
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    allBlogs()
+    document.getElementById('navbar').innerHTML = generateNav()
+    addListeners()
 }, false)
