@@ -4,7 +4,8 @@ import { getSession } from "./session.js";
 let img
 const validate = () => {
     const errors = {}
-    if (document.getElementById("content").value === "") {
+    const cont = document.getElementById("content").value
+    if (cont === "" || cont === undefined) {
         errors.content = "El contenido del blog es requerido"
     }
     return errors
@@ -15,15 +16,22 @@ const uploadBlog = async(e) => {
         content: document.getElementById("content").value,
         image: img || false
     }
+    console.log(Object.keys(validation))
     if(Object.keys(validation).length === 0) {
-        const owner = getSession()
-        const confirm = await addBlog({...data, owner})
-        //createBlog({...data, owner})
-        confirm ? (alert("Blog subido")) : (alert("Error al subir el blog"))
-    }else{
+        console.log(Object.values(validation))
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")
         document.getElementById("errors").className = "alert alert-danger alert-dismissible fade show"
         document.getElementById("errors").innerHTML = errors
+    }else{
+        const owner = getSession()
+        const confirm = await addBlog({...data, owner})
+        //createBlog({...data, owner})
+        if(confirm) {
+            alert("Blog subido")
+            location.href = "feed.html"
+        }else{
+            alert("Error al subir el blog")
+        }
     }
 }
 const readFile = (ev) => {

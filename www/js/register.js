@@ -2,21 +2,21 @@ import { setSession } from "./session.js"
 import { addUser, getUsers } from "./users.js"
 import { newId } from "./utils.js"
 
-const validate = (data) => {
+const validate = ({user,email,pass,pass2}) => {
     const errors = {}
-    if (data.user === "" || data.user === undefined) {
+    if (user === "" || user === undefined) {
         errors.user = "El nombre de usuario es requerido"
     }
-    if (data.email === "" || data.email === undefined) {
+    if (email === "" || email === undefined) {
         errors.email = "El correo electrónico es requerido"
     }
-    if (data.pass === "" || data.pass === undefined) {
+    if (pass === "" || pass === undefined) {
         errors.pass = "La contraseña es requerida"
     }
-    if (data.pass2 === "" || data.pass2 === undefined) {
+    if (pass2 === "" || pass2 === undefined) {
         errors.pass2 = "La confirmación de la contraseña es requerida"
     }
-    if (data.pass !== data.pass2) {
+    if (pass !== pass2) {
         errors.pass2 = "Las contraseñas no coinciden"
     }
     return errors
@@ -51,4 +51,10 @@ const register = (e) => {
     }
 }
 
+const toLogin = (e) => {
+    e.preventDefault()
+    location.href = "../index.html"
+}
+
+document.getElementById("sesion").addEventListener("click", toLogin, false)
 document.getElementById("register").addEventListener("click", register, false)
