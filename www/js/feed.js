@@ -2,49 +2,8 @@ import { generateNav } from "./components/navbar.js"
 import { deleteBlog, getBlogs } from "./indexeddb/indexdb.js"
 import { deleteSession, getSession } from "./session.js"
 import { getUser, getUsers } from "./users.js"
-
-const generateBlog = ({ content, image, owner, id }, personal = false) => {
-    return (
-        `
-            <div class=${image ? "blog" : "text-blog"}>
-                <div class="profile-info">
-                    <img class="profile-img" src="../img/user.png" alt="">
-                    <div class="profile-name">
-                        ${owner}
-                    </div>
-                </div>
-                ${image ? `<img class="blog-image" src="${image}" alt="">` : '<div></div>'}
-                <div class="icon-heart">
-                    <img class="img-icon-heart" src="../img/feed/icon_heart_.png">
-                    ${personal ? `<img id=${id} class="img-icon-heart deleteblog" src="../img/trash.png">` : ''}
-                </div>
-                <div class="blog-content">
-                    ${content}
-                </div>
-            </div>
-        `
-    )
-}
-
-const viewProfile = ({ user, email }) => {
-    return (
-        `
-            <div class="profile-container">
-                <div class="profile-info">
-                    <div class="profile">
-                        <img class="profile-img" src="../img/user.png" alt="">
-                        <div class="profile-name">
-                            ${user}
-                        </div>
-                    </div>
-                </div>
-                <div class="profile-email profile-info profile">
-                ${email}
-            </div>
-            </div>
-        `
-    )
-}
+import { generateBlog } from "./components/blog.js";
+import { viewProfile } from './components/profile.js'
 
 const quitBlog = async (id) => {
     await deleteBlog(id)
