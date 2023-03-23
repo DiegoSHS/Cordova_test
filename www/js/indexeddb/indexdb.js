@@ -1,5 +1,5 @@
 import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@7/+esm'
-//import { openDB} from 'idb'
+
 const initdb = async() => {
     const db = await openDB('users', 1, {
         upgrade(db, oldVersion, newVersion, transaction, event) {
