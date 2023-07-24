@@ -12,23 +12,23 @@ const validate = (data) => {
     return errors
 }
 const login = () => {
-    const erralert = document.getElementById("errors")
-    const data = {
-        user: document.getElementById("user").value,
-        pass: document.getElementById("pass").value
-    }
-    const validation = validate(data)
-    if (Object.keys(validation).length === 0){
+    const erralert = document.getElementById("errors"),
+        data = {
+            user: document.getElementById("user").value,
+            pass: document.getElementById("pass").value
+        },
+        validation = validate(data)
+    if (Object.keys(validation).length === 0) {
         const users = getUsers()
         const user = users.find(u => u.user === data.user && u.pass === data.pass)
         if (user) {
             setSession(user.id)
             alert("Bienvenido")
             location.href = "pages/feed.html"
-        }else{
+        } else {
             alert("Usuario o contraseña incorrectos")
         }
-    }else{
+    } else {
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")
         erralert.className = "alert alert-danger alert-dismissible fade show"
         erralert.innerHTML = errors

@@ -3,42 +3,42 @@ import { addBlog } from "./indexeddb/indexdb.js";
 import { getSession } from "./session.js";
 let img
 const validate = () => {
-    const errors = {}
-    const cont = document.getElementById("content").value
+    const errors = {},
+        cont = document.getElementById("content").value
     if (cont === "" || cont === undefined) {
         errors.content = "El contenido del blog es requerido"
     }
     return errors
 }
-const uploadBlog = async(e) => {
-    const validation = validate()
-    const data = {
-        content: document.getElementById("content").value,
-        image: img || false
-    }
+const uploadBlog = async (e) => {
+    const validation = validate(),
+        data = {
+            content: document.getElementById("content").value,
+            image: img || false
+        }
     console.log(Object.keys(validation))
-    if(Object.keys(validation).length === 0) {
+    if (Object.keys(validation).length === 0) {
         console.log(Object.values(validation))
         const errors = Object.values(validation).map(e => `<li>${e}</li>`).join("")
         document.getElementById("errors").className = "alert alert-danger alert-dismissible fade show"
         document.getElementById("errors").innerHTML = errors
-    }else{
-        const owner = getSession()
-        const confirm = await addBlog({...data, owner})
+    } else {
+        const owner = getSession(),
+            confirm = await addBlog({ ...data, owner })
         //createBlog({...data, owner})
-        if(confirm) {
+        if (confirm) {
             alert("Blog subido")
             location.href = "feed.html"
-        }else{
+        } else {
             alert("Error al subir el blog")
         }
     }
 }
 const readFile = (ev) => {
-    const reader = new FileReader()
-    const image_file = ev.target.files[0]
+    const reader = new FileReader(),
+        image_file = ev.target.files[0]
     reader.readAsDataURL(image_file)
-    
+
     reader.onload = (e) => {
         const uploaded_image = e.target.result
         img = uploaded_image
@@ -47,7 +47,7 @@ const readFile = (ev) => {
 }
 
 const addListeners = () => {
-    document.getElementById("all").addEventListener("click", ()=>{
+    document.getElementById("all").addEventListener("click", () => {
         location.href = "feed.html"
     }, false)
     document.getElementById("logout").addEventListener("click", () => {
