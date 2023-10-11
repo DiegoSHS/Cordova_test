@@ -5,7 +5,7 @@ this proyect uses localStorage and indexedDB to store data locally using the bro
 you can use this app as an example of cordova-apps and indexedDB
 
 ## How to create the app
-to generate an andorid app with cordova you must see the [Apache Cordova Documentation](https://cordova.apache.org/docs/en/latest/)
+to generate an android app with cordova you must see the [Apache Cordova Documentation](https://cordova.apache.org/docs/en/latest/)
 
 Install cordova globally
 ```bash
